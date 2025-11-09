@@ -92,7 +92,11 @@
 
             <div class="games-grid" id="gamesGrid">
                 <!-- Sam's Geometry Dash - Featured Game -->
-                <div class="game-card">
+                <div class="game-card" data-game-counter="geometry-dash-game">
+                    <div class="game-view-count-pill loading">
+                        <span class="pill-icon">👁️</span>
+                        <span class="pill-count">...</span>
+                    </div>
                     <div class="game-icon">⚡</div>
                     <h3>Sam's Geometry Dash</h3>
                     <p>Jump and fly through dangerous passages and spiky obstacles!</p>
@@ -241,6 +245,54 @@
             document.addEventListener('DOMContentLoaded', updateViewCount);
         } else {
             updateViewCount();
+        }
+    </script>
+
+    <!-- Game Card View Count Tracking -->
+    <script>
+        // Fetch and display view counts for game cards
+        async function updateGameCardViewCounts() {
+            // Find all game cards with a counter attribute
+            const gameCards = document.querySelectorAll('.game-card[data-game-counter]');
+
+            for (const card of gameCards) {
+                const counterKey = card.getAttribute('data-game-counter');
+                const pill = card.querySelector('.game-view-count-pill');
+                const countElement = pill.querySelector('.pill-count');
+
+                if (!counterKey || !pill || !countElement) continue;
+
+                try {
+                    // Create CounterAPI client
+                    const counter = new Counter({
+                        workspace: 'sambhav-jains-team-1603',
+                        accessToken: 'ut_MhXAnAOqboknNssM01H4GEudAd2g9M69mhR9W9xA',
+                        timeout: 5000
+                    });
+
+                    // Get (not increment) the counter value
+                    const result = await counter.get(counterKey);
+
+                    if (result && result.value !== undefined) {
+                        countElement.textContent = result.value.toLocaleString();
+                        pill.classList.remove('loading');
+                    } else {
+                        countElement.textContent = '0';
+                        pill.classList.remove('loading');
+                    }
+                } catch (error) {
+                    console.error(`Error fetching view count for ${counterKey}:`, error);
+                    countElement.textContent = '-';
+                    pill.classList.remove('loading');
+                }
+            }
+        }
+
+        // Update game card view counts when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', updateGameCardViewCounts);
+        } else {
+            updateGameCardViewCounts();
         }
     </script>
 </body>
