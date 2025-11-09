@@ -52,11 +52,6 @@
                 <h2>Hey There, Gamer! 🕹️</h2>
                 <p style="margin-top: 0.5rem; color: var(--text-secondary);">Jump in and discover amazing games I've created!</p>
             </div>
-            <div class="view-count-widget" id="viewCountWidget">
-                <span class="view-icon">👁️</span>
-                <span class="view-count" id="viewCount">Loading...</span>
-                <span class="view-label">views</span>
-            </div>
         </div>
 
         <!-- About Me Section -->
@@ -92,11 +87,7 @@
 
             <div class="games-grid" id="gamesGrid">
                 <!-- Sam's Geometry Dash - Featured Game -->
-                <div class="game-card" data-game-counter="geometry-dash-game">
-                    <div class="game-view-count-pill loading">
-                        <span class="pill-icon">👁️</span>
-                        <span class="pill-count">...</span>
-                    </div>
+                <div class="game-card">
                     <div class="game-icon">⚡</div>
                     <h3>Sam's Geometry Dash</h3>
                     <p>Jump and fly through dangerous passages and spiky obstacles!</p>
@@ -192,113 +183,5 @@
     <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
 
     <script src="script.js"></script>
-
-    <!-- View Count Tracking -->
-    <script>
-        // Initialize and update view count
-        async function updateViewCount() {
-            const viewCountElement = document.getElementById('viewCount');
-            const pageKey = 'home-page';
-            const workspace = 'sambhav-jains-team-1603';
-            const accessToken = 'ut_MhXAnAOqboknNssM01H4GEudAd2g9M69mhR9W9xA';
-
-            try {
-                // Using CounterAPI REST API directly
-                const response = await fetch(`https://api.counterapi.dev/v1/${workspace}/${pageKey}/up`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                console.log('API response status:', response.status);
-                const result = await response.json();
-                console.log('Counter result for home page:', result);
-
-                if (result && (result.value !== undefined || result.count !== undefined)) {
-                    const count = result.value || result.count;
-                    // Add animation class
-                    viewCountElement.classList.add('updating');
-
-                    // Update count with animation
-                    setTimeout(() => {
-                        viewCountElement.textContent = count.toLocaleString();
-                        viewCountElement.classList.remove('updating');
-                    }, 100);
-
-                    // Track in Mixpanel too
-                    if (typeof mixpanel !== 'undefined') {
-                        mixpanel.track('Page View Count', {
-                            'page': 'Home',
-                            'view_count': count
-                        });
-                    }
-                } else {
-                    viewCountElement.textContent = '---';
-                }
-            } catch (error) {
-                console.error('Error fetching view count:', error);
-                viewCountElement.textContent = '---';
-            }
-        }
-
-        // Update view count when page loads
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', updateViewCount);
-        } else {
-            updateViewCount();
-        }
-    </script>
-
-    <!-- Game Card View Count Tracking -->
-    <script>
-        // Fetch and display view counts for game cards
-        async function updateGameCardViewCounts() {
-            const gameCards = document.querySelectorAll('.game-card[data-game-counter]');
-            const workspace = 'sambhav-jains-team-1603';
-
-            for (const card of gameCards) {
-                const counterKey = card.getAttribute('data-game-counter');
-                const pill = card.querySelector('.game-view-count-pill');
-                const countElement = pill.querySelector('.pill-count');
-
-                if (!counterKey || !pill || !countElement) continue;
-
-                try {
-                    // Using CounterAPI REST API directly
-                    const response = await fetch(`https://api.counterapi.dev/v1/${workspace}/${counterKey}`, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    });
-
-                    console.log('Game card API response status:', response.status, 'for', counterKey);
-                    const result = await response.json();
-                    console.log('Counter result for game card:', counterKey, result);
-
-                    if (result && (result.value !== undefined || result.count !== undefined)) {
-                        const count = result.value || result.count;
-                        countElement.textContent = count.toLocaleString();
-                        pill.classList.remove('loading');
-                    } else {
-                        countElement.textContent = '0';
-                        pill.classList.remove('loading');
-                    }
-                } catch (error) {
-                    console.error(`Error fetching view count for ${counterKey}:`, error);
-                    countElement.textContent = '-';
-                    pill.classList.remove('loading');
-                }
-            }
-        }
-
-        // Update game card view counts when page loads
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', updateGameCardViewCounts);
-        } else {
-            updateGameCardViewCounts();
-        }
-    </script>
 </body>
 </html>
