@@ -24,62 +24,15 @@
     </script>
 
     <style>
-        /* Override body styles to allow scrolling */
-        body {
-            overflow-y: auto;
-            height: auto;
-            display: block;
-        }
-
-        /* Additional styles for game page */
-        .game-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 80px 20px 60px;
-        }
-
-        .game-content-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .game-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .game-header h1 {
-            font-size: 2.5em;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
-        }
-
-        .game-header p {
-            color: var(--text-secondary);
-            font-size: 1.1em;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
+        /* Game-specific iframe wrapper */
         .game-wrapper {
-            background: var(--card-bg);
-            border: 1px solid rgba(219, 255, 102, 0.3);
-            border-radius: 20px;
+            background: var(--bg-panel);
+            border-radius: var(--border-radius);
             padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             margin-bottom: 30px;
             transition: all 0.3s ease;
-        }
-
-        body.dark .game-wrapper {
-            border-color: rgba(181, 243, 71, 0.3);
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: center;
         }
 
         .game-wrapper iframe {
@@ -92,84 +45,6 @@
             border-color: rgba(181, 243, 71, 0.2);
         }
 
-        .game-info {
-            max-width: 800px;
-            margin: 30px auto;
-            background: var(--card-bg);
-            border: 1px solid rgba(219, 255, 102, 0.2);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        body.dark .game-info {
-            border-color: rgba(181, 243, 71, 0.2);
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
-        }
-
-        .game-info h2 {
-            color: var(--text-main);
-            font-size: 1.5em;
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
-
-        .game-info p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 12px;
-        }
-
-        .controls-list {
-            list-style: none;
-            margin: 20px 0;
-        }
-
-        .controls-list li {
-            padding: 12px 20px;
-            margin: 10px 0;
-            background: rgba(219, 255, 102, 0.1);
-            border-left: 3px solid var(--accent);
-            border-radius: 10px;
-            color: var(--text-main);
-            transition: all 0.2s;
-        }
-
-        body.dark .controls-list li {
-            background: rgba(181, 243, 71, 0.1);
-        }
-
-        .controls-list li:hover {
-            transform: translateX(8px);
-            background: rgba(219, 255, 102, 0.2);
-        }
-
-        body.dark .controls-list li:hover {
-            background: rgba(181, 243, 71, 0.2);
-        }
-
-        .back-button {
-            background: var(--accent);
-            color: #000;
-            border: none;
-            padding: 12px 28px;
-            font-size: 1em;
-            font-weight: 600;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: var(--font-main);
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-        }
-
-        .back-button:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(219, 255, 102, 0.3);
-        }
-
         @media (max-width: 768px) {
             .game-wrapper {
                 padding: 20px;
@@ -179,36 +54,34 @@
                 width: 100% !important;
                 height: 350px !important;
             }
-
-            .game-header h1 {
-                font-size: 2em;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Background animation -->
-    <div class="background-animation"></div>
-
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <h1 class="logo">🎮 My Gaming World 🎮</h1>
-            <nav>
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="../index.html#games" class="nav-link">All Games</a>
-                <a href="../index.html#about" class="nav-link">About</a>
-            </nav>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <h1>🎮 Sam's Game Zone</h1>
         </div>
-    </header>
 
-    <!-- Game Container -->
-    <div class="game-container">
-        <div class="game-content-wrapper">
-            <div class="game-header">
-                <h1>⚡ Sam's Geometry Dash</h1>
-                <p>Jump and fly through dangerous passages and spiky obstacles in this challenging platformer!</p>
-            </div>
+        <nav>
+            <a href="../index.html">👤 About Me</a>
+            <a href="../index.html#games">🎮 My Games</a>
+            <a href="../index.html#stats">📊 Cool Stats</a>
+            <a href="../index.html#contact">📬 Contact</a>
+        </nav>
+
+        <div style="margin-top: auto;">
+            <p style="font-size: 0.85rem; opacity: 0.7; line-height: 1.5;">Made with ❤️ by a 10-year-old game creator!</p>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main">
+        <!-- Game Header Section -->
+        <section>
+            <h2 class="section-title">⚡ Sam's Geometry Dash</h2>
+            <p class="section-subtitle">Jump and fly through dangerous passages and spiky obstacles in this challenging platformer!</p>
 
             <div class="game-wrapper">
                 <iframe src="https://scratch.mit.edu/projects/1225309435/embed"
@@ -220,30 +93,32 @@
                         allowfullscreen>
                 </iframe>
             </div>
-        </div>
+        </section>
 
-        <div class="game-info">
-            <h2>How to Play</h2>
-            <p>Navigate through the challenging levels by jumping over obstacles and avoiding spikes. Timing is everything in this fast-paced platformer!</p>
+        <!-- How to Play Section -->
+        <section>
+            <h2 class="section-title">How to Play 🎮</h2>
+            <p class="section-subtitle">Navigate through the challenging levels by jumping over obstacles and avoiding spikes. Timing is everything in this fast-paced platformer!</p>
 
-            <h2 style="margin-top: 24px;">Controls</h2>
-            <ul class="controls-list">
+            <h3 style="font-size: 1.3rem; margin-top: 24px; margin-bottom: 16px; font-weight: 600;">Controls</h3>
+            <ul class="fun-list">
                 <li>🖱️ Click or tap to jump</li>
                 <li>⌨️ Use spacebar or arrow keys to control</li>
                 <li>🎯 Time your jumps perfectly to avoid obstacles</li>
             </ul>
 
-            <a href="../index.html#games" class="back-button">← Back to All Games</a>
-        </div>
-    </div>
+            <a href="../index.html#games" class="play-button" style="display: inline-block; text-decoration: none; text-align: center;">← Back to All Games</a>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
+        <!-- Footer inside main content -->
+        <footer>
             <p>Made with ❤️ by a 10-year-old game creator!</p>
             <p class="footer-note">Keep being awesome! 🌟</p>
-        </div>
-    </footer>
+        </footer>
+    </main>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
     <!-- Theme Toggle Button -->
     <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
