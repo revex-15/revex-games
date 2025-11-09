@@ -329,15 +329,6 @@ section {
     transform: scale(1.05);
 }
 
-.add-game-card {
-    background: linear-gradient(135deg, #ffecd2, #fcb69f);
-    border: 3px dashed #f5576c;
-}
-
-.add-game-card:hover {
-    background: linear-gradient(135deg, #fcb69f, #ffecd2);
-}
-
 /* Stats Section */
 .stats-grid {
     display: grid;

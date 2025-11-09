@@ -37,46 +37,6 @@ function editAbout() {
     showNotification('About Me section updated! 🎉');
 }
 
-// Add new game
-function addNewGame() {
-    const gamesGrid = document.getElementById('gamesGrid');
-
-    const gameName = prompt('What\'s your game called?');
-    if (!gameName) return;
-
-    const gameDesc = prompt('Describe your game:');
-    if (!gameDesc) return;
-
-    const gameEmoji = prompt('Pick an emoji for your game (🎮, 🏃, 🧩, 🚀, ⚔️, 🏰, etc.):', '🎮');
-
-    const tag1 = prompt('First tag (e.g., Action, Puzzle, Adventure):', 'Fun');
-    const tag2 = prompt('Second tag:', 'Cool');
-
-    // Create new game card
-    const gameCard = document.createElement('div');
-    gameCard.className = 'game-card';
-    gameCard.innerHTML = `
-        <div class="game-icon">${gameEmoji || '🎮'}</div>
-        <h3>${gameName}</h3>
-        <p>${gameDesc}</p>
-        <div class="game-tags">
-            <span class="tag">${tag1}</span>
-            <span class="tag">${tag2}</span>
-        </div>
-        <button class="play-button" onclick="playGame('${gameName}')">Play Now!</button>
-    `;
-
-    // Insert before the "Add New Game" card
-    const addCard = document.querySelector('.add-game-card');
-    gamesGrid.insertBefore(gameCard, addCard);
-
-    // Animate the new card
-    gameCard.style.animation = 'bounceIn 0.6s ease';
-
-    showNotification(`${gameName} added successfully! 🎮`);
-    updateStats();
-}
-
 // Play game (placeholder)
 function playGame(gameName) {
     alert(`Get ready to play ${gameName}! 🎮\n\n(This is where you'd link to your actual game)`);
@@ -90,15 +50,6 @@ function editContact() {
     if (newContact) {
         contactCard.textContent = newContact;
         showNotification('Contact info updated! 📬');
-    }
-}
-
-// Update game count in stats
-function updateStats() {
-    const gameCards = document.querySelectorAll('.game-card:not(.add-game-card)');
-    const statsNumber = document.querySelector('.stat-card .stat-number');
-    if (statsNumber) {
-        statsNumber.textContent = gameCards.length;
     }
 }
 
