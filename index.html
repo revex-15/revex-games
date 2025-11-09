@@ -3,37 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Awesome Games & Stuff!</title>
+    <title>🎮 My Awesome Games & Stuff!</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Fun animated background -->
-    <div class="background-animation"></div>
-
-    <!-- Header Section -->
-    <header>
-        <div class="container">
-            <h1 class="logo">🎮 My Gaming World 🎮</h1>
-            <nav>
-                <a href="#about" class="nav-link">About Me</a>
-                <a href="#games" class="nav-link">My Games</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <h1>🎮 My Gaming World</h1>
         </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h2 class="hero-title">Welcome to My Awesome Website! 🚀</h2>
-            <p class="hero-subtitle">Check out my cool games and learn about me!</p>
-            <button class="cta-button" onclick="scrollToGames()">See My Games</button>
+        <nav>
+            <a href="#about">👤 About Me</a>
+            <a href="#games">🎮 My Games</a>
+            <a href="#stats">📊 Cool Stats</a>
+            <a href="#contact">📬 Contact</a>
+        </nav>
+
+        <div style="margin-top: auto;">
+            <p style="font-size: 0.85rem; opacity: 0.7; line-height: 1.5;">Made with ❤️ by a 10-year-old game creator!</p>
         </div>
-    </section>
+    </aside>
 
-    <!-- About Me Section -->
-    <section id="about" class="about-section">
-        <div class="container">
+    <!-- Main Content Area -->
+    <main class="main">
+        <!-- Welcome Box -->
+        <div class="welcome-box">
+            <div>
+                <h2>Welcome to My Awesome Website! 🚀</h2>
+                <p style="margin-top: 0.5rem; color: var(--text-secondary);">Check out my cool games and learn about me!</p>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <span style="margin-right: 0.5rem;">🔍</span>
+            <input type="text" placeholder="Search for games..." id="searchInput">
+        </div>
+
+        <!-- About Me Section -->
+        <section id="about">
             <h2 class="section-title">About Me 😎</h2>
             <div class="about-card">
                 <div class="profile-pic">
@@ -50,12 +62,10 @@
                     </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Games Section -->
-    <section id="games" class="games-section">
-        <div class="container">
+        <!-- Games Section -->
+        <section id="games">
             <h2 class="section-title">My Awesome Games 🎮</h2>
             <p class="section-subtitle">Here are all the cool games I've made or I'm working on!</p>
 
@@ -108,14 +118,11 @@
                     </div>
                     <button class="play-button" disabled>Coming Soon</button>
                 </div>
-
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Fun Stats Section -->
-    <section class="stats-section">
-        <div class="container">
+        <!-- Fun Stats Section -->
+        <section id="stats">
             <h2 class="section-title">Cool Stats 📊</h2>
             <div class="stats-grid">
                 <div class="stat-card">
@@ -135,27 +142,29 @@
                     <div class="stat-label">Coolness Factor</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
+        <!-- Contact Section -->
+        <section id="contact">
             <h2 class="section-title">Get in Touch 📬</h2>
             <div class="contact-card">
                 <p>Want to play my games or chat about cool stuff? Reach out!</p>
                 <p class="contact-email">📧 <span id="email-display">jsambhav572 [at] gmail [dot] com</span></p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
+        <!-- Footer inside main content -->
+        <footer>
             <p>Made with ❤️ by a 10-year-old game creator!</p>
             <p class="footer-note">Keep being awesome! 🌟</p>
-        </div>
-    </footer>
+        </footer>
+    </main>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
 
     <script src="script.js"></script>
 </body>

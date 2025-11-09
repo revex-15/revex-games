@@ -1,88 +1,104 @@
-// Smooth scrolling to games section
-function scrollToGames() {
-    document.getElementById('games').scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+// ===========================
+// 🎨 Theme Toggle Function
+// ===========================
+function toggleTheme() {
+    const body = document.body;
+    const themeButton = document.querySelector('.theme-toggle');
+
+    body.classList.toggle('dark');
+
+    // Update button emoji
+    if (body.classList.contains('dark')) {
+        themeButton.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+    } else {
+        themeButton.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+// Load saved theme preference
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    const themeButton = document.querySelector('.theme-toggle');
+
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+        themeButton.textContent = '☀️';
+    }
+});
+
+// ===========================
+// 📱 Mobile Menu Toggle
+// ===========================
+function toggleMenu() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('open');
+}
+
+// Close menu when clicking outside on mobile
+document.addEventListener('click', (e) => {
+    const sidebar = document.querySelector('.sidebar');
+    const menuToggle = document.querySelector('.menu-toggle');
+
+    if (window.innerWidth <= 768) {
+        if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+            sidebar.classList.remove('open');
+        }
+    }
+});
+
+// ===========================
+// 🔍 Search Functionality
+// ===========================
+const searchInput = document.getElementById('searchInput');
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const gameCards = document.querySelectorAll('.game-card');
+
+        gameCards.forEach(card => {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const description = card.querySelector('p').textContent.toLowerCase();
+
+            if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
     });
 }
 
-// Play game (placeholder)
-function playGame(gameName) {
-    alert(`Get ready to play ${gameName}! 🎮\n\n(This is where you'd link to your actual game)`);
-}
-
-// Show notification
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 30px;
-        background: linear-gradient(45deg, #43e97b, #38f9d7);
-        color: white;
-        padding: 20px 30px;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        font-weight: bold;
-        font-size: 1.1em;
-        z-index: 1000;
-        animation: slideInRight 0.5s ease;
-    `;
-    notification.textContent = message;
-
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-        notification.style.animation = 'slideOutRight 0.5s ease';
-        setTimeout(() => notification.remove(), 500);
-    }, 3000);
-}
-
-// Add animation keyframes
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideInRight {
-        from {
-            transform: translateX(400px);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slideOutRight {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(400px);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
-
+// ===========================
+// 🎯 Smooth Navigation
+// ===========================
 // Add smooth scroll behavior for navigation links
-document.querySelectorAll('.nav-link').forEach(link => {
+document.querySelectorAll('.sidebar nav a').forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href').substring(1);
         const targetSection = document.getElementById(targetId);
+
         if (targetSection) {
             targetSection.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
+
+            // Close mobile menu after navigation
+            if (window.innerWidth <= 768) {
+                document.querySelector('.sidebar').classList.remove('open');
+            }
         }
     });
 });
 
-// Add some fun confetti effect on button clicks
+// ===========================
+// 🎊 Confetti Effect
+// ===========================
 function createConfetti(x, y) {
-    const colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#43e97b', '#ffd676'];
+    const colors = ['#dbff66', '#b5f347', '#eaffaa', '#f5576c', '#43e97b', '#ffd676'];
 
     for (let i = 0; i < 30; i++) {
         const confetti = document.createElement('div');
@@ -128,25 +144,42 @@ function createConfetti(x, y) {
 
 // Add confetti to play buttons
 document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('play-button')) {
+    if (e.target.classList.contains('play-button') && !e.target.disabled) {
         createConfetti(e.clientX, e.clientY);
     }
 });
 
-// Add floating animation to game cards on load
-window.addEventListener('load', () => {
-    const gameCards = document.querySelectorAll('.game-card');
-    gameCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-    });
+// ===========================
+// 📧 Email Functionality
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+    const emailDisplay = document.getElementById('email-display');
+    if (emailDisplay) {
+        emailDisplay.style.cursor = 'pointer';
 
-    // Show welcome message
-    setTimeout(() => {
-        showNotification('Welcome to my awesome website! 🎉');
-    }, 1000);
+        emailDisplay.addEventListener('click', function() {
+            const user = 'jsambhav572';
+            const domain = 'gmail';
+            const tld = 'com';
+            const email = user + '@' + domain + '.' + tld;
+            window.location.href = 'mai' + 'lto:' + email;
+        });
+
+        emailDisplay.title = 'Click to send email';
+    }
 });
 
-// Easter egg: Konami code
+// ===========================
+// 🎮 Welcome Message
+// ===========================
+window.addEventListener('load', () => {
+    console.log('🎮 Welcome to the coolest website ever! 🎮');
+    console.log('💡 Fun fact: All emojis are now perfectly visible! 😎');
+});
+
+// ===========================
+// 🌈 Easter Egg: Konami Code
+// ===========================
 let konamiCode = [];
 const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 
@@ -156,7 +189,28 @@ document.addEventListener('keydown', (e) => {
 
     if (konamiCode.join(',') === konamiSequence.join(',')) {
         document.body.style.animation = 'rainbow 2s linear infinite';
-        showNotification('🌈 RAINBOW MODE ACTIVATED! 🌈');
+
+        // Create notification
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0);
+            color: white;
+            padding: 2rem 3rem;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            z-index: 10000;
+            text-align: center;
+            animation: pulse 1s ease infinite;
+        `;
+        notification.innerHTML = '🌈 RAINBOW MODE ACTIVATED! 🌈';
+        document.body.appendChild(notification);
+
+        setTimeout(() => notification.remove(), 3000);
 
         const rainbowStyle = document.createElement('style');
         rainbowStyle.textContent = `
@@ -164,31 +218,13 @@ document.addEventListener('keydown', (e) => {
                 0% { filter: hue-rotate(0deg); }
                 100% { filter: hue-rotate(360deg); }
             }
+            @keyframes pulse {
+                0%, 100% { transform: translate(-50%, -50%) scale(1); }
+                50% { transform: translate(-50%, -50%) scale(1.1); }
+            }
         `;
         document.head.appendChild(rainbowStyle);
     }
 });
 
-console.log('🎮 Welcome to the coolest website ever! 🎮');
 console.log('💡 Tip: Try the Konami code for a surprise! (↑ ↑ ↓ ↓ ← → ← → B A)');
-
-// Obfuscated email functionality
-document.addEventListener('DOMContentLoaded', () => {
-    const emailDisplay = document.getElementById('email-display');
-    if (emailDisplay) {
-        // Make email clickable with cursor pointer
-        emailDisplay.style.cursor = 'pointer';
-
-        // Construct email from parts (obfuscated from bots)
-        emailDisplay.addEventListener('click', function() {
-            const user = 'jsambhav572';
-            const domain = 'gmail';
-            const tld = 'com';
-            const email = user + '@' + domain + '.' + tld;
-            window.location.href = 'mai' + 'lto:' + email;
-        });
-
-        // Show tooltip on hover
-        emailDisplay.title = 'Click to send email';
-    }
-});
