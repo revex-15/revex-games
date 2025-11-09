@@ -11,17 +11,6 @@ function playGame(gameName) {
     alert(`Get ready to play ${gameName}! 🎮\n\n(This is where you'd link to your actual game)`);
 }
 
-// Edit contact info
-function editContact() {
-    const contactCard = document.querySelector('.contact-card p:first-child');
-    const newContact = prompt('Add your contact information (with parent permission!):', contactCard.textContent);
-
-    if (newContact) {
-        contactCard.textContent = newContact;
-        showNotification('Contact info updated! 📬');
-    }
-}
-
 // Show notification
 function showNotification(message) {
     const notification = document.createElement('div');
