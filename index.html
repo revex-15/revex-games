@@ -36,7 +36,9 @@
         <div class="container">
             <h2 class="section-title">About Me 😎</h2>
             <div class="about-card">
-                <div class="profile-pic">👦</div>
+                <div class="profile-pic">
+                    <img src="images/profile.png" alt="Profile Picture" class="profile-image">
+                </div>
                 <div class="about-content">
                     <h3>Hey! I'm a 10-year-old Game Creator!</h3>
                     <p>I love making games and having fun! Here's some cool stuff about me:</p>
@@ -46,8 +48,6 @@
                         <li>🚀 I'm always learning new things</li>
                         <li>⚡ I have tons of energy and big ideas!</li>
                     </ul>
-                    <p class="edit-note">✏️ Click the "Edit About Me" button to change this!</p>
-                    <button class="edit-button" onclick="editAbout()">Edit About Me</button>
                 </div>
             </div>
         </div>
@@ -60,8 +60,21 @@
             <p class="section-subtitle">Here are all the cool games I've made or I'm working on!</p>
 
             <div class="games-grid" id="gamesGrid">
-                <!-- Example game cards -->
+                <!-- Sam's Geometry Dash - Featured Game -->
                 <div class="game-card">
+                    <div class="game-icon">⚡</div>
+                    <h3>Sam's Geometry Dash</h3>
+                    <p>Jump and fly through dangerous passages and spiky obstacles!</p>
+                    <div class="game-tags">
+                        <span class="tag">Platformer</span>
+                        <span class="tag">Challenge</span>
+                    </div>
+                    <button class="play-button" onclick="window.location.href='games/geometry-dash.html'">Play Now!</button>
+                </div>
+
+                <!-- Coming Soon Games -->
+                <div class="game-card coming-soon">
+                    <div class="coming-soon-badge">Coming Soon</div>
                     <div class="game-icon">🏃</div>
                     <h3>Super Runner</h3>
                     <p>Run, jump, and collect coins in this fast-paced adventure!</p>
@@ -69,10 +82,11 @@
                         <span class="tag">Action</span>
                         <span class="tag">Fun</span>
                     </div>
-                    <button class="play-button">Play Now!</button>
+                    <button class="play-button" disabled>Coming Soon</button>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card coming-soon">
+                    <div class="coming-soon-badge">Coming Soon</div>
                     <div class="game-icon">🧩</div>
                     <h3>Puzzle Master</h3>
                     <p>Solve tricky puzzles and become the ultimate puzzle master!</p>
@@ -80,10 +94,11 @@
                         <span class="tag">Puzzle</span>
                         <span class="tag">Brain</span>
                     </div>
-                    <button class="play-button">Play Now!</button>
+                    <button class="play-button" disabled>Coming Soon</button>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card coming-soon">
+                    <div class="coming-soon-badge">Coming Soon</div>
                     <div class="game-icon">🚀</div>
                     <h3>Space Explorer</h3>
                     <p>Fly through space, dodge asteroids, and discover new planets!</p>
@@ -91,14 +106,9 @@
                         <span class="tag">Adventure</span>
                         <span class="tag">Space</span>
                     </div>
-                    <button class="play-button">Play Now!</button>
+                    <button class="play-button" disabled>Coming Soon</button>
                 </div>
 
-                <div class="game-card add-game-card" onclick="addNewGame()">
-                    <div class="game-icon">➕</div>
-                    <h3>Add New Game</h3>
-                    <p>Click here to add your own game!</p>
-                </div>
             </div>
         </div>
     </section>
@@ -109,8 +119,8 @@
             <h2 class="section-title">Cool Stats 📊</h2>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">Games Created</div>
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Games Available</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">∞</div>
@@ -134,8 +144,7 @@
             <h2 class="section-title">Get in Touch 📬</h2>
             <div class="contact-card">
                 <p>Want to play my games or chat about cool stuff? Reach out!</p>
-                <p class="edit-note">✏️ Add your contact info here (with parent permission!)</p>
-                <button class="cta-button" onclick="editContact()">Edit Contact Info</button>
+                <p class="contact-email">📧 <span id="email-display">jsambhav572 [at] gmail [dot] com</span></p>
             </div>
         </div>
     </section>

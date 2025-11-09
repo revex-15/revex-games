@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam's Geometry Dash - My Gaming World</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Additional styles for game page */
+        .game-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 60px;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .game-header h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #a78bfa 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .game-header p {
+            color: #9ca3af;
+            font-size: 1.1em;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .game-wrapper {
+            background: rgba(30, 10, 60, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+                        0 0 40px rgba(139, 92, 246, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .game-wrapper iframe {
+            display: block;
+            border-radius: 12px;
+            border: 2px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .game-info {
+            max-width: 800px;
+            margin: 30px auto;
+            background: rgba(30, 10, 60, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .game-info h2 {
+            color: #ffffff;
+            font-size: 1.5em;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .game-info p {
+            color: #d1d5db;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .controls-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .controls-list li {
+            padding: 12px 20px;
+            margin: 10px 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
+            border-left: 3px solid #8b5cf6;
+            border-radius: 10px;
+            color: #e5e5e5;
+        }
+
+        .back-button {
+            background: rgba(139, 92, 246, 0.2);
+            color: #a78bfa;
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            padding: 12px 28px;
+            font-size: 1em;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'DM Sans', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background: rgba(139, 92, 246, 0.3);
+            border-color: #8b5cf6;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .game-wrapper {
+                padding: 20px;
+            }
+
+            .game-wrapper iframe {
+                width: 100% !important;
+                height: 350px !important;
+            }
+
+            .game-header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background animation -->
+    <div class="background-animation"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1 class="logo">🎮 My Gaming World 🎮</h1>
+            <nav>
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../index.html#games" class="nav-link">All Games</a>
+                <a href="../index.html#about" class="nav-link">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Game Container -->
+    <div class="game-container">
+        <div class="game-header">
+            <h1>⚡ Sam's Geometry Dash</h1>
+            <p>Jump and fly through dangerous passages and spiky obstacles in this challenging platformer!</p>
+        </div>
+
+        <div class="game-wrapper">
+            <iframe src="https://scratch.mit.edu/projects/1225309435/embed"
+                    allowtransparency="true"
+                    width="485"
+                    height="402"
+                    frameborder="0"
+                    scrolling="no"
+                    allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="game-info">
+            <h2>How to Play</h2>
+            <p>Navigate through the challenging levels by jumping over obstacles and avoiding spikes. Timing is everything in this fast-paced platformer!</p>
+
+            <h2 style="margin-top: 24px;">Controls</h2>
+            <ul class="controls-list">
+                <li>🖱️ Click or tap to jump</li>
+                <li>⌨️ Use spacebar or arrow keys to control</li>
+                <li>🎯 Time your jumps perfectly to avoid obstacles</li>
+            </ul>
+
+            <p>Can you beat all the levels? Test your reflexes and see how far you can go!</p>
+
+            <a href="../index.html#games" class="back-button">← Back to All Games</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Made with ❤️ by a 10-year-old game creator!</p>
+            <p class="footer-note">Keep being awesome! 🌟</p>
+        </div>
+    </footer>
+</body>
+</html>

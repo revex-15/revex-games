@@ -6,100 +6,9 @@ function scrollToGames() {
     });
 }
 
-// Edit About Me section
-function editAbout() {
-    const aboutContent = document.querySelector('.about-content');
-    const currentText = aboutContent.querySelector('p:first-of-type').nextElementSibling;
-
-    const funListItems = aboutContent.querySelectorAll('.fun-list li');
-    const listTexts = Array.from(funListItems).map(li => li.textContent);
-
-    // Create a simple prompt-based editor
-    const newTitle = prompt('What should the title say?', 'Hey! I\'m a 10-year-old Game Creator!');
-    if (newTitle) {
-        aboutContent.querySelector('h3').textContent = newTitle;
-    }
-
-    const newIntro = prompt('Write something cool about yourself:', 'I love making games and having fun! Here\'s some cool stuff about me:');
-    if (newIntro) {
-        aboutContent.querySelector('p:first-of-type').textContent = newIntro;
-    }
-
-    // Edit list items
-    alert('Now let\'s edit your cool facts! Click OK to continue.');
-    funListItems.forEach((li, index) => {
-        const newText = prompt(`Edit fact #${index + 1}:`, li.textContent);
-        if (newText) {
-            li.textContent = newText;
-        }
-    });
-
-    showNotification('About Me section updated! 🎉');
-}
-
-// Add new game
-function addNewGame() {
-    const gamesGrid = document.getElementById('gamesGrid');
-
-    const gameName = prompt('What\'s your game called?');
-    if (!gameName) return;
-
-    const gameDesc = prompt('Describe your game:');
-    if (!gameDesc) return;
-
-    const gameEmoji = prompt('Pick an emoji for your game (🎮, 🏃, 🧩, 🚀, ⚔️, 🏰, etc.):', '🎮');
-
-    const tag1 = prompt('First tag (e.g., Action, Puzzle, Adventure):', 'Fun');
-    const tag2 = prompt('Second tag:', 'Cool');
-
-    // Create new game card
-    const gameCard = document.createElement('div');
-    gameCard.className = 'game-card';
-    gameCard.innerHTML = `
-        <div class="game-icon">${gameEmoji || '🎮'}</div>
-        <h3>${gameName}</h3>
-        <p>${gameDesc}</p>
-        <div class="game-tags">
-            <span class="tag">${tag1}</span>
-            <span class="tag">${tag2}</span>
-        </div>
-        <button class="play-button" onclick="playGame('${gameName}')">Play Now!</button>
-    `;
-
-    // Insert before the "Add New Game" card
-    const addCard = document.querySelector('.add-game-card');
-    gamesGrid.insertBefore(gameCard, addCard);
-
-    // Animate the new card
-    gameCard.style.animation = 'bounceIn 0.6s ease';
-
-    showNotification(`${gameName} added successfully! 🎮`);
-    updateStats();
-}
-
 // Play game (placeholder)
 function playGame(gameName) {
     alert(`Get ready to play ${gameName}! 🎮\n\n(This is where you'd link to your actual game)`);
-}
-
-// Edit contact info
-function editContact() {
-    const contactCard = document.querySelector('.contact-card p:first-child');
-    const newContact = prompt('Add your contact information (with parent permission!):', contactCard.textContent);
-
-    if (newContact) {
-        contactCard.textContent = newContact;
-        showNotification('Contact info updated! 📬');
-    }
-}
-
-// Update game count in stats
-function updateStats() {
-    const gameCards = document.querySelectorAll('.game-card:not(.add-game-card)');
-    const statsNumber = document.querySelector('.stat-card .stat-number');
-    if (statsNumber) {
-        statsNumber.textContent = gameCards.length;
-    }
 }
 
 // Show notification
@@ -262,3 +171,24 @@ document.addEventListener('keydown', (e) => {
 
 console.log('🎮 Welcome to the coolest website ever! 🎮');
 console.log('💡 Tip: Try the Konami code for a surprise! (↑ ↑ ↓ ↓ ← → ← → B A)');
+
+// Obfuscated email functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const emailDisplay = document.getElementById('email-display');
+    if (emailDisplay) {
+        // Make email clickable with cursor pointer
+        emailDisplay.style.cursor = 'pointer';
+
+        // Construct email from parts (obfuscated from bots)
+        emailDisplay.addEventListener('click', function() {
+            const user = 'jsambhav572';
+            const domain = 'gmail';
+            const tld = 'com';
+            const email = user + '@' + domain + '.' + tld;
+            window.location.href = 'mai' + 'lto:' + email;
+        });
+
+        // Show tooltip on hover
+        emailDisplay.title = 'Click to send email';
+    }
+});
