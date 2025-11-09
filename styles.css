@@ -590,3 +590,66 @@ a, button, .game-card, .stat-card, .about-card, .contact-card {
     opacity: 0;
   }
 }
+
+/* ============================= */
+/* 👁️ View Count Widget         */
+/* ============================= */
+.view-count-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(219, 255, 102, 0.2);
+  border: 1px solid rgba(219, 255, 102, 0.4);
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+body.dark .view-count-widget {
+  background: rgba(181, 243, 71, 0.2);
+  border-color: rgba(181, 243, 71, 0.4);
+}
+
+.view-count-widget:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(219, 255, 102, 0.3);
+}
+
+body.dark .view-count-widget:hover {
+  box-shadow: 0 2px 8px rgba(181, 243, 71, 0.3);
+}
+
+.view-icon {
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.view-count {
+  font-family: var(--font-mono);
+  color: var(--text-main);
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.view-label {
+  color: var(--text-secondary);
+  font-size: 0.85em;
+  line-height: 1;
+}
+
+/* Animation for counting effect */
+@keyframes pulse-count {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.view-count.updating {
+  animation: pulse-count 0.5s ease;
+}
