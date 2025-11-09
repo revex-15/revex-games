@@ -193,38 +193,36 @@
 
     <script src="script.js"></script>
 
-    <!-- CounterAPI SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
-
     <!-- View Count Tracking -->
     <script>
         // Initialize and update view count
         async function updateViewCount() {
             const viewCountElement = document.getElementById('viewCount');
             const pageKey = 'home-page';
+            const workspace = 'sambhav-jains-team-1603';
+            const accessToken = 'ut_MhXAnAOqboknNssM01H4GEudAd2g9M69mhR9W9xA';
 
             try {
-                // Create CounterAPI client
-                const counter = new Counter({
-                    workspace: 'sambhav-jains-team-1603',
-                    accessToken: 'ut_MhXAnAOqboknNssM01H4GEudAd2g9M69mhR9W9xA',
-                    timeout: 5000,
-                    debug: true
+                // Using CounterAPI REST API directly
+                const response = await fetch(`https://api.counterapi.dev/v1/${workspace}/${pageKey}/up`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 });
 
-                console.log('Counter client created for home page:', counter);
-
-                // Increment counter and get the new value
-                const result = await counter.up(pageKey);
+                console.log('API response status:', response.status);
+                const result = await response.json();
                 console.log('Counter result for home page:', result);
 
-                if (result && result.value) {
+                if (result && (result.value !== undefined || result.count !== undefined)) {
+                    const count = result.value || result.count;
                     // Add animation class
                     viewCountElement.classList.add('updating');
 
                     // Update count with animation
                     setTimeout(() => {
-                        viewCountElement.textContent = result.value.toLocaleString();
+                        viewCountElement.textContent = count.toLocaleString();
                         viewCountElement.classList.remove('updating');
                     }, 100);
 
@@ -232,7 +230,7 @@
                     if (typeof mixpanel !== 'undefined') {
                         mixpanel.track('Page View Count', {
                             'page': 'Home',
-                            'view_count': result.value
+                            'view_count': count
                         });
                     }
                 } else {
@@ -256,8 +254,8 @@
     <script>
         // Fetch and display view counts for game cards
         async function updateGameCardViewCounts() {
-            // Find all game cards with a counter attribute
             const gameCards = document.querySelectorAll('.game-card[data-game-counter]');
+            const workspace = 'sambhav-jains-team-1603';
 
             for (const card of gameCards) {
                 const counterKey = card.getAttribute('data-game-counter');
@@ -267,22 +265,21 @@
                 if (!counterKey || !pill || !countElement) continue;
 
                 try {
-                    // Create CounterAPI client
-                    const counter = new Counter({
-                        workspace: 'sambhav-jains-team-1603',
-                        accessToken: 'ut_MhXAnAOqboknNssM01H4GEudAd2g9M69mhR9W9xA',
-                        timeout: 5000,
-                        debug: true
+                    // Using CounterAPI REST API directly
+                    const response = await fetch(`https://api.counterapi.dev/v1/${workspace}/${counterKey}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
                     });
 
-                    console.log('Counter client created for game card:', counterKey, counter);
-
-                    // Get (not increment) the counter value
-                    const result = await counter.get(counterKey);
+                    console.log('Game card API response status:', response.status, 'for', counterKey);
+                    const result = await response.json();
                     console.log('Counter result for game card:', counterKey, result);
 
-                    if (result && result.value !== undefined) {
-                        countElement.textContent = result.value.toLocaleString();
+                    if (result && (result.value !== undefined || result.count !== undefined)) {
+                        const count = result.value || result.count;
+                        countElement.textContent = count.toLocaleString();
                         pill.classList.remove('loading');
                     } else {
                         countElement.textContent = '0';
