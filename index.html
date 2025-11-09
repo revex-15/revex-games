@@ -208,11 +208,15 @@
                 const counter = new Counter({
                     workspace: 'sambhav-jains-team-1603',
                     accessToken: 'ut_MhXAnAOqboknNssM01H4GEudAd2g9M69mhR9W9xA',
-                    timeout: 5000
+                    timeout: 5000,
+                    debug: true
                 });
+
+                console.log('Counter client created for home page:', counter);
 
                 // Increment counter and get the new value
                 const result = await counter.up(pageKey);
+                console.log('Counter result for home page:', result);
 
                 if (result && result.value) {
                     // Add animation class
@@ -267,11 +271,15 @@
                     const counter = new Counter({
                         workspace: 'sambhav-jains-team-1603',
                         accessToken: 'ut_MhXAnAOqboknNssM01H4GEudAd2g9M69mhR9W9xA',
-                        timeout: 5000
+                        timeout: 5000,
+                        debug: true
                     });
+
+                    console.log('Counter client created for game card:', counterKey, counter);
 
                     // Get (not increment) the counter value
                     const result = await counter.get(counterKey);
+                    console.log('Counter result for game card:', counterKey, result);
 
                     if (result && result.value !== undefined) {
                         countElement.textContent = result.value.toLocaleString();

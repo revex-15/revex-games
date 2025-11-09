@@ -245,11 +245,15 @@
                 const counter = new Counter({
                     workspace: 'sambhav-jains-team-1603',
                     accessToken: 'ut_MhXAnAOqboknNssM01H4GEudAd2g9M69mhR9W9xA',
-                    timeout: 5000
+                    timeout: 5000,
+                    debug: true
                 });
+
+                console.log('Counter client created for game page:', counter);
 
                 // Increment counter and get the new value
                 const result = await counter.up(pageKey);
+                console.log('Counter result for game page:', result);
 
                 if (result && result.value) {
                     // Add animation class
