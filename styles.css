@@ -510,9 +510,8 @@ section {
     margin-top: 24px;
 }
 
-.contact-email a {
+.contact-email #email-display {
     color: #a78bfa;
-    text-decoration: none;
     font-weight: 600;
     background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
     -webkit-background-clip: text;
@@ -520,9 +519,11 @@ section {
     -webkit-text-fill-color: transparent;
     transition: all 0.3s ease;
     position: relative;
+    cursor: pointer;
+    display: inline-block;
 }
 
-.contact-email a::after {
+.contact-email #email-display::after {
     content: '';
     position: absolute;
     bottom: -4px;
@@ -533,11 +534,11 @@ section {
     transition: width 0.3s ease;
 }
 
-.contact-email a:hover::after {
+.contact-email #email-display:hover::after {
     width: 100%;
 }
 
-.contact-email a:hover {
+.contact-email #email-display:hover {
     opacity: 0.8;
 }
 

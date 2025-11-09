@@ -171,3 +171,24 @@ document.addEventListener('keydown', (e) => {
 
 console.log('🎮 Welcome to the coolest website ever! 🎮');
 console.log('💡 Tip: Try the Konami code for a surprise! (↑ ↑ ↓ ↓ ← → ← → B A)');
+
+// Obfuscated email functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const emailDisplay = document.getElementById('email-display');
+    if (emailDisplay) {
+        // Make email clickable with cursor pointer
+        emailDisplay.style.cursor = 'pointer';
+
+        // Construct email from parts (obfuscated from bots)
+        emailDisplay.addEventListener('click', function() {
+            const user = 'jsambhav572';
+            const domain = 'gmail';
+            const tld = 'com';
+            const email = user + '@' + domain + '.' + tld;
+            window.location.href = 'mai' + 'lto:' + email;
+        });
+
+        // Show tooltip on hover
+        emailDisplay.title = 'Click to send email';
+    }
+});
