@@ -6,37 +6,6 @@ function scrollToGames() {
     });
 }
 
-// Edit About Me section
-function editAbout() {
-    const aboutContent = document.querySelector('.about-content');
-    const currentText = aboutContent.querySelector('p:first-of-type').nextElementSibling;
-
-    const funListItems = aboutContent.querySelectorAll('.fun-list li');
-    const listTexts = Array.from(funListItems).map(li => li.textContent);
-
-    // Create a simple prompt-based editor
-    const newTitle = prompt('What should the title say?', 'Hey! I\'m a 10-year-old Game Creator!');
-    if (newTitle) {
-        aboutContent.querySelector('h3').textContent = newTitle;
-    }
-
-    const newIntro = prompt('Write something cool about yourself:', 'I love making games and having fun! Here\'s some cool stuff about me:');
-    if (newIntro) {
-        aboutContent.querySelector('p:first-of-type').textContent = newIntro;
-    }
-
-    // Edit list items
-    alert('Now let\'s edit your cool facts! Click OK to continue.');
-    funListItems.forEach((li, index) => {
-        const newText = prompt(`Edit fact #${index + 1}:`, li.textContent);
-        if (newText) {
-            li.textContent = newText;
-        }
-    });
-
-    showNotification('About Me section updated! 🎉');
-}
-
 // Play game (placeholder)
 function playGame(gameName) {
     alert(`Get ready to play ${gameName}! 🎮\n\n(This is where you'd link to your actual game)`);
